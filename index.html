@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<header>
+    <h1>Bem vindos</h1>
+</header>
+<body>
+    <div class="container">
+        <h1>Automatizacao de mensagem da wert</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <label for="text">Indique aqui sua mensagem</label>
+            <textarea name="mensagem" class="textfield" id="mensagem" cols="30" rows="10"></textarea>
+
+            <label for="text">Nome da planilha</label>
+            <input type="text" name="planilha_nome" class="textfield" placeholder="Digite o nome da planilha">
+
+            <label for="text">Nome da página</label>
+            <input type="text" name="pagina_nome" class="textfield" placeholder="Digite o nome da página">
+
+            <label for="text">Submeta o excel</label>
+            <input type="file" name="excel_file" accept=".xlsx">
+
+            <label for="text">Submeta a imagem</label>
+            <input type="file" name="imagem_file" accept=".jpg">
+
+            <button type="submit">Submeter</button>
+        </form>
+    </div>
+    <script type="module" src="automacao.py"></script>
+</body>
+</html>
