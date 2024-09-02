@@ -27,10 +27,9 @@ def Automatizacao(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminh
                 print(f"Linha inválida ou incompleta encontrada: {linha}")
                 continue  # Pule para a próxima linha
 
-            nome = linha[0].value
-            telefone = str(linha[1].value).strip()  # Converta para string e aplique strip()
-            assessor = linha[2].value
-            nomeReal = linha[4].value
+            nome = linha[1].value
+            telefone = str(linha[2].value).strip()  # Converta para string e aplique strip()
+            nomeReal = linha[0].value
             print(f"Mensagem aberta na conta de : {nomeReal}")
 
             if not telefone:
@@ -39,7 +38,7 @@ def Automatizacao(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminh
 
             # Envio das mensagens
             for mensagem in mensagens:
-                mensagem_personalizada = mensagem.replace("{nome_lead}", nome).replace("{assessor}", assessor)
+                mensagem_personalizada = mensagem.replace("{nome_lead}", nome)
                 linkWhats = f"https://web.whatsapp.com/send?phone={telefone}&text={quote(mensagem_personalizada)}"
 
                 navegador.get(linkWhats)
