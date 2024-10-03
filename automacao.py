@@ -15,7 +15,7 @@ def Automatizacao(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminh
         navegador.get("https://web.whatsapp.com/")
 
         # Aguarde até que o WhatsApp Web carregue
-        WebDriverWait(navegador, 60).until(EC.presence_of_element_located((By.ID, "side")))
+        WebDriverWait(navegador, 120).until(EC.presence_of_element_located((By.ID, "side")))
         print("WhatsApp Web carregado com sucesso.")
 
         # Carregar a planilha e a página específica
@@ -27,9 +27,9 @@ def Automatizacao(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminh
                 print(f"Linha inválida ou incompleta encontrada: {linha}")
                 continue  # Pule para a próxima linha
 
-            nome = linha[1].value
-            telefone = str(linha[2].value).strip()  # Converta para string e aplique strip()
-            nomeReal = linha[0].value
+            nome = linha[0].value
+            telefone = str(linha[1].value).strip()  # Converta para string e aplique strip()
+            nomeReal = linha[2].value
             print(f"Mensagem aberta na conta de : {nomeReal}")
 
             if not telefone:
@@ -110,9 +110,7 @@ def reenvio(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminho_foto
 
             nome = linha[0].value
             telefone = str(linha[1].value).strip()  # Converta para string e aplique strip()
-            assessor = linha[2].value
-            status = linha[3].value
-            print(f"Nome do assessor: {status}")
+            print(f"Nome contato: {nome}")
 
             if not telefone:
                 print(f"Telefone inválido para o contato {nome}. Pulando envio.")
