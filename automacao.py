@@ -29,7 +29,7 @@ def Automatizacao(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminh
 
             nome = linha[0].value
             telefone = str(linha[1].value).strip()  # Converta para string e aplique strip()
-            nomeReal = linha[2].value
+            nomeReal = linha[0].value
             print(f"Mensagem aberta na conta de : {nomeReal}")
 
             if not telefone:
@@ -38,15 +38,15 @@ def Automatizacao(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminh
 
             # Envio das mensagens
             for mensagem in mensagens:
-                mensagem_personalizada = mensagem.replace("{nome_lead}", nome)
+                mensagem_personalizada = mensagem.replace("{nome_lead}", str(nome))
                 linkWhats = f"https://web.whatsapp.com/send?phone={telefone}&text={quote(mensagem_personalizada)}"
 
                 navegador.get(linkWhats)
                 sleep(20)
 
                 try:
-                    campo_mensagem = WebDriverWait(navegador, 45).until(
-                        EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div/p[1]/span'))
+                    campo_mensagem = WebDriverWait(navegador, 45).until( 
+                        EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p'))
                     )
                     campo_mensagem.send_keys(Keys.ENTER)
                     sleep(5)
@@ -102,6 +102,8 @@ def reenvio(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminho_foto
         # Carregar a planilha e a página específica
         workbook = openpyxl.load_workbook(caminho_arquivo)
         paginaContatos = workbook[nome_pagina]
+        status = False
+        assessor  = False
 
         for linha in paginaContatos.iter_rows(min_row=2):
             if len(linha) < 3:
