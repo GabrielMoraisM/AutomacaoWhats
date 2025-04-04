@@ -3,7 +3,8 @@ from tkinter import filedialog, messagebox
 from threading import Thread
 from automacao import Automatizacao
 
-# Lista de widgets de mensagens
+# Lista de 
+# widgets de mensagens
 lista_campos_mensagens = []
 
 def adicionar_campo_mensagem():

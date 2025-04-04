@@ -22,7 +22,8 @@ def submeter():
         print(f"Erro ao submeter: {e}")
         messagebox.showerror("Erro", f"Ocorreu um erro ao submeter: {e}")
 
-# Função para selecionar o arquivo de planilha
+# Função para 
+# selecionar o arquivo de planilha
 def selecionar_arquivo():
     caminho_arquivo = filedialog.askopenfilename(filetypes=[("Arquivos Excel", "*.xlsx")])
     entry_arquivo.delete(0, tk.END)

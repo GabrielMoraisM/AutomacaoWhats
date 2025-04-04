@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 from urllib.parse import quote
 from time import sleep
 
@@ -23,7 +24,7 @@ def Automatizacao(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminh
         paginaContatos = workbook[nome_pagina]
 
         for linha in paginaContatos.iter_rows(min_row=2):
-            if len(linha) < 3:
+            if len(linha) < 2:
                 print(f"Linha inválida ou incompleta encontrada: {linha}")
                 continue  # Pule para a próxima linha
 
@@ -56,7 +57,8 @@ def Automatizacao(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminh
                 except Exception as e:
                     print(f"Erro ao enviar mensagem para {nomeReal} ({telefone}): {e}")
 
-            # Envio da imagem (fora do loop de mensagens)
+            # Envio da imagem 
+            # (fora do loop de mensagens)
             if caminho_foto:
                 try:
                     campo_anexar = WebDriverWait(navegador, 45).until(
@@ -79,7 +81,7 @@ def Automatizacao(mensagens, caminho_arquivo, nome_planilha, nome_pagina, caminh
                 except Exception as e:
                     print(f"Erro ao enviar imagem para {nome} ({telefone}): {e}")
 
-            sleep(20)
+            sleep(10)
 
     except Exception as e:
         print(f"Erro na automação: {e}")
